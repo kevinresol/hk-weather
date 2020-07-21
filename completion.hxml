@@ -1,0 +1,5 @@
+tests.hxml
+-js bin/completion.js
+-lib travix
+-lib hk-weather
+--no-output

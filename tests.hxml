@@ -1,0 +1,6 @@
+-cp tests
+-main RunTests
+-dce full
+
+-lib tink_unittest
+-lib tink_web

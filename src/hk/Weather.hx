@@ -51,17 +51,13 @@ typedef RhrreadData = {
 	},
 }
 
-@:jsonParse(function (s:tink.json.Serialized<hk.Weather.UvIndexData>):RhrreadUvIndex
+@:jsonParse(function (s:tink.json.Serialized<hk.Weather.RhrreadUvIndexData>):hk.Weather.RhrreadUvIndex
 	return
-		if ((s:String).charAt(0) == '"') Empty;
-		else Data(s.parse())
+		if ((s:String).charAt(0) == '"') null;
+		else s.parse()
 )
-enum RhrreadUvIndex {
-	Empty;
-	Data(data:UvIndexData);
-}
-
-typedef UvIndexData = {
+typedef RhrreadUvIndex = RhrreadUvIndexData;
+typedef RhrreadUvIndexData = {
 	data:Array<{place:String, value:Int, desc:String}>,
 	recordDesc:String,
 }

@@ -34,10 +34,7 @@ typedef RhrreadData = {
 	warningMessage:Array<String>,
 	icon:Array<Int>,
 	iconUpdateTime:WeatherDate,
-	uvindex: {
-		data:Array<{place:String, value:Int, desc:String}>,
-		recordDesc:String,
-	},
+	uvindex:RhrreadUvIndex,
 	updateTime:WeatherDate,
 	temperature: {
 		data:Array<{place:String, value:Int, unit:String}>,
@@ -52,6 +49,21 @@ typedef RhrreadData = {
 		recordTime:WeatherDate,
 		data:Array<{unit:String, value:Int, place:String}>,
 	},
+}
+
+@:jsonParse(function (s:tink.json.Serialized<hk.Weather.UvIndexData>):RhrreadUvIndex
+	return
+		if ((s:String).charAt(0) == '"') Empty;
+		else Data(s.parse())
+)
+enum RhrreadUvIndex {
+	Empty;
+	Data(data:UvIndexData);
+}
+
+typedef UvIndexData = {
+	data:Array<{place:String, value:Int, desc:String}>,
+	recordDesc:String,
 }
 
 

@@ -1,5 +1,7 @@
 package hk;
 
+import tink.json.EmptyStringAsNull;
+
 interface Weather {
 	@:get('/weatherAPI/opendata/weather.php?dataType=rhrread&lang=$lang')
 	function rhrread(lang:String):RhrreadData;
@@ -34,13 +36,16 @@ typedef RhrreadData = {
 	warningMessage:Array<String>,
 	icon:Array<Int>,
 	iconUpdateTime:WeatherDate,
-	uvindex:RhrreadUvIndex,
+	uvindex:EmptyStringAsNull<{
+		data:Array<{place:String, value:Int, desc:String}>,
+		recordDesc:String,
+	}>,
 	updateTime:WeatherDate,
 	temperature: {
 		data:Array<{place:String, value:Int, unit:String}>,
 		recordTime:WeatherDate,
 	},
-	tcmessage:String,
+	tcmessage:EmptyStringAsNull<Array<String>>,
 	mintempFrom00To09:String,
 	rainfallFrom00To12:String,
 	rainfallLastMonth:String,
@@ -49,17 +54,6 @@ typedef RhrreadData = {
 		recordTime:WeatherDate,
 		data:Array<{unit:String, value:Int, place:String}>,
 	},
-}
-
-@:jsonParse(function (s:tink.json.Serialized<hk.Weather.RhrreadUvIndexData>):hk.Weather.RhrreadUvIndex
-	return
-		if ((s:String).charAt(0) == '"') null;
-		else s.parse()
-)
-typedef RhrreadUvIndex = RhrreadUvIndexData;
-typedef RhrreadUvIndexData = {
-	data:Array<{place:String, value:Int, desc:String}>,
-	recordDesc:String,
 }
 
 

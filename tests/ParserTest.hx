@@ -14,5 +14,8 @@ class ParserTest {
 }
 
 typedef UvIndexObject = {
-	uvindex: hk.Weather.RhrreadUvIndex,
+	uvindex: tink.json.EmptyStringAsNull<{
+		data:Array<{place:String, value:Int, desc:String}>,
+		recordDesc:String,
+	}>,
 }

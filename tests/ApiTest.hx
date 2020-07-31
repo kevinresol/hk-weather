@@ -13,7 +13,7 @@ class ApiTest {
 		api.rhrread('tc').handle(function(o) switch o {
 			case Success(data):
 				var date:Date = data.updateTime;
-				trace(date);
+				trace(data);
 				asserts.done();
 			case Failure(e):
 				asserts.fail(e);
@@ -29,7 +29,7 @@ class ApiTest {
 		api.fnd('tc').handle(function(o) switch o {
 			case Success(data):
 				var date:Date = data.updateTime;
-				trace(date);
+				trace(data);
 				asserts.done();
 			case Failure(e):
 				asserts.fail(e);

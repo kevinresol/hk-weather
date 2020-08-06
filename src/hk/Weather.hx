@@ -33,7 +33,7 @@ typedef RhrreadData = {
 		startTime:WeatherDate,
 		endTime:WeatherDate,
 	},
-	warningMessage:Array<String>,
+	warningMessage:EmptyStringAsNull<Array<String>>,
 	icon:Array<Int>,
 	iconUpdateTime:WeatherDate,
 	uvindex:EmptyStringAsNull<{
